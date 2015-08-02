@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Etilic.Core.Migrations;
+using System.Data.Entity.Migrations;
 
 namespace Etilic.Core.DAL
 {

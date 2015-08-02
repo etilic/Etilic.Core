@@ -50,9 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\DateTimeConvention.cs" />
     <Compile Include="DAL\EtilicContext.cs" />
     <Compile Include="DAL\EtilicInitializer.cs" />
+    <Compile Include="Diagnostics\Diagnostic.cs" />
+    <Compile Include="Diagnostics\DiagnosticLevel.cs" />
+    <Compile Include="Diagnostics\DiagnosticQueue.cs" />
+    <Compile Include="EtilicException.cs" />
     <Compile Include="Extensibility\Bundle.cs" />
+    <Compile Include="Extensibility\BundleConfig.cs" />
+    <Compile Include="Extensibility\BundleConfigEntry.cs" />
     <Compile Include="Extensibility\BundleManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Person.cs" />

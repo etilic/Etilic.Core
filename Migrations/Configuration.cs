@@ -12,6 +12,8 @@ namespace Etilic.Core.Migrations
         {
             this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = false;
+
+            this.MigrationsNamespace = "Etilic.Core.Migrations";
         }
 
         protected override void Seed(EtilicContext context)

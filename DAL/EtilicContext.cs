@@ -1,4 +1,5 @@
-﻿using Etilic.Core.Extensibility;
+﻿using Etilic.Core.Diagnostics;
+using Etilic.Core.Extensibility;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,7 +13,26 @@ namespace Etilic.Core.DAL
     public class EtilicContext : DbContext
     {
         #region Properties
+        /// <summary>
+        /// Gets or sets the collection of people.
+        /// </summary>
         public DbSet<Person> People
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Gets or sets the collection of bundle configuration entries.
+        /// </summary>
+        public DbSet<BundleConfigEntry> BundleConfiguration
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Gets or sets the collection of diagnostic messages.
+        /// </summary>
+        public DbSet<Diagnostic> Diagnostics
         {
             get;
             set;
@@ -27,6 +47,15 @@ namespace Etilic.Core.DAL
             : base("EtilicContext")
         {
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
+        public EtilicContext(String connectionString)
+            : base(connectionString)
+        {
+
+        }
         #endregion
 
         /// <summary>
@@ -36,6 +65,7 @@ namespace Etilic.Core.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Add(new DateTimeConvention());
 
             foreach(Bundle bundle in BundleManager.Bundles.Values)
             {

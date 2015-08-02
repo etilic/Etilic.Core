@@ -40,11 +40,42 @@ namespace Etilic.Core.Extensibility
 
             // register the bundle
             bundles.Add(bundle.BundleID, bundle);
+
+            bundle.OnAdded();
         }
 
+        #region GetBundle
+        /// <summary>
+        /// Finds the <see cref="Etilic.Extensibility.Bundle"/> object that has the
+        /// specified globally unique ID and then returns it as an object of type
+        /// <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static T GetBundle<T>(Guid id) where T : class
         {
             return bundles[id] as T;
         }
+        /// <summary>
+        /// Finds the first <see cref="Etilic.Extensibility.Bundle"/> object that is of
+        /// type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of bundle to find.</typeparam>
+        /// <returns>
+        /// Returns the first <see cref="Etilic.Extensibility.Bundle"/> object that is of
+        /// type <typeparamref name="T"/>; otherwise, null.
+        /// <returns>
+        public static T GetBundle<T>() where T : class
+        {
+            foreach(Bundle b in bundles.Values)
+            {
+                if(typeof(T).Equals(b.GetType()))
+                    return b as T;
+            }
+
+            return null;
+        }
+        #endregion
     }
 }
