@@ -3,6 +3,7 @@ using Etilic.Core.Extensibility;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
@@ -66,11 +67,6 @@ namespace Etilic.Core.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Add(new DateTimeConvention());
-
-            foreach(Bundle bundle in BundleManager.Bundles.Values)
-            {
-                bundle.RegisterEntities(modelBuilder);
-            }
         }
     }
 }
